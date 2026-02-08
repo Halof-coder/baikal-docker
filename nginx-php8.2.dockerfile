@@ -31,6 +31,7 @@ RUN curl -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 
 # Add Baikal & nginx configuration
 COPY files/docker-entrypoint.d/*.sh files/docker-entrypoint.d/*.php files/docker-entrypoint.d/nginx/ /docker-entrypoint.d/
+RUN chmod +x /docker-entrypoint.d/*.sh
 COPY --from=builder --chown=nginx:nginx baikal /var/www/baikal
 COPY files/nginx.conf /etc/nginx/conf.d/default.conf
 
